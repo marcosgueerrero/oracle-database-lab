@@ -1,4 +1,1 @@
-# Oracle Database Lab
-Training repository for Oracle Database administration, testing, change management and Git workflows.
-Name: Marcos Guerrero
-Professor: Richard Aviles Lopez
+# Oracle Database Lab - Version Feature
