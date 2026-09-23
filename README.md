@@ -4,3 +4,5 @@ Training repository for Oracle Database administration, testing, change manageme
 
 **Name:** Marcos Guerrero
 **Professor:** Richard Aviles Lopez
+
+See CONTRIBUTING.md for branch and commit conventions.
