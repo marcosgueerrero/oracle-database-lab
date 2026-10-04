@@ -1,0 +1,6 @@
+config/.env
+backups/
+*.tar
+*.dmp
+.DS_Store
+Thumbs.db
