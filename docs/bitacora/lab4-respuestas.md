@@ -29,3 +29,24 @@ Orden de corrección: 2 y 3 primero (la exposición de secretos ya ocurrió y el
 - FREEPDB1 se abrió sola en READ WRITE gracias a SAVE STATE (dba_pdb_saved_states: OPEN).
 - Alert log: ORA-00800 [Set Priority Failed] VKTM/LGWR = conocido (el contenedor no permite subir prioridad). ORA-27300..27303 chdir() = ruido del arranque del contenedor, a documentar. Sin recuperación de instancia real: las PDB estaban cerradas limpiamente (Crash Recovery excluding pdb 2/3).
 - Mi entorno difiere: 3 miembros de redo de 201 MB, ARCHIVELOG, 62 procesos de background.
+
+### Parte E: parte del reinicio (reto)
+- Parada solicitada (SHUTDOWN IMMEDIATE): 19:00:58 UTC (21:00:58 hora de Madrid).
+- Apertura: mount a las 19:01:09 UTC y OPEN completado a las 19:01:12 UTC. Reinicio total: unos 14 segundos.
+- Recuperación de instancia: no. Las PDB 2 y 3 estaban cerradas limpiamente (Crash Recovery excluding pdb 2/3).
+- ORA-00800 [Set Priority Failed] VKTM/LGWR: conocido (el contenedor no permite subir prioridad); se excluye de alertas.
+- ORA-27300..27303 (chdir() failed): a investigar. Aparece una sola vez, en un arranque previo a mis pruebas.
+
+## Parte F: parámetros
+- El SPFILE guarda 18 parámetros especificados de 564 documentados; v$parameter = memoria, v$spparameter = SPFILE (db_files: memoria 200, SPFILE 300 hasta el reinicio; RESET lo borra).
+- PROCESSES: v$parameter dice IMMEDIATE pero da ORA-02095; en la práctica es estático porque dimensiona la SGA al arrancar.
+- ORA-65040: processes no se puede cambiar desde una PDB. open_cursors sí (ISPDB_MODIFIABLE=TRUE).
+- db_create_file_dest sale vacío desde CDB$ROOT porque lo fijé solo dentro de FREEPDB1.
+
+### Change request: open_cursors 300 -> 1000
+- Valor actual: 300, en el SPFILE y en memoria.
+- Propuesto: 1000. Antes investigar ORA-01000: suele ser fuga de cursores de la aplicación; subir el límite solo retrasa el problema.
+- SCOPE: BOTH (dinámico, inmediato y persistente); si afecta a una sola PDB, aplicarlo dentro de ella.
+- Prueba: primero SCOPE=MEMORY, vigilando v$open_cursor y el alert log.
+- Rollback: ALTER SYSTEM SET open_cursors=300 SCOPE=BOTH; (o RESET).
+- Evidencia: PFILE antes y después versionados en git, y ticket asociado.
