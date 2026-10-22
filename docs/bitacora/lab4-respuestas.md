@@ -66,3 +66,17 @@ Orden de corrección: 2 y 3 primero (la exposición de secretos ya ocurrió y el
 - ARC0..ARC3 existen porque mi base está en ARCHIVELOG (el enunciado, en NOARCHIVELOG, no los tiene).
 - Mi sesión: SID 177, SERIAL# 53361, servidor dedicado SPID 4147.
 - Reto de la sesión que más consume: SID 182, SERIAL# 24278, SPID 4719, PGA usada 3,3 MB. Consulta usada: scripts/lab4/09-reto-sesion.sql (v$session JOIN v$process, filtrando sesiones de usuario ACTIVE).
+
+## Parte I: contenedores
+- SYS ve 16 datafiles desde la raíz (4+3+9) y 9 desde FREEPDB1: dentro de una PDB todas las vistas se filtran por el contenedor actual.
+- V$LOG tiene filas con CON_ID 0 porque el redo es de toda la CDB; tengo 3 grupos.
+- LAB4_ANALISTA recibe ORA-00942 en DBA_TABLES porque Oracle no revela lo que no puedes ver; ORA-41900 sí indica el privilegio que falta (UPDATE) porque el objeto es visible.
+- C##LAB4_AUDITOR ve CON_ID 0 y 1 pero no FREEPDB1 por no tener CONTAINER_DATA. Lo igualaría a C##OPS_RO: ALTER USER c##lab4_auditor SET CONTAINER_DATA = ALL CONTAINER = CURRENT;
+- Con SELECT ANY TABLE habría podido leer también ADMIN_CLINICA y el resto; el privilegio de esquema limita a un solo esquema, incluidas sus tablas futuras.
+- COMMON_USER_PREFIX = C##: sin prefijo en la raíz da ORA-65096; con C## en una PDB, ORA-65094; la PDB abierta no se borra (ORA-65025).
+- DBA_ en la raíz: 5 tablespaces; CDB_: 15 (5 + 10 de FREEPDB1; sin la semilla). V$LOG lee X$KCCLE (kcc = control file).
+
+### Reto: auditor externo de ADMIN_CLINICA (diseño, no ejecutado)
+- Usuario LOCAL en FREEPDB1: CREATE USER auditora_ext IDENTIFIED BY "<clave>"; GRANT CREATE SESSION TO auditora_ext;
+- Privilegio mínimo: GRANT READ ANY TABLE ON SCHEMA admin_clinica TO auditora_ext;
+- Último día: REVOKE READ ANY TABLE ON SCHEMA admin_clinica FROM auditora_ext; DROP USER auditora_ext;
