@@ -12,3 +12,13 @@ Orden de corrección: 2 y 3 primero (la exposición de secretos ya ocurrió y el
 - Riesgo 1: con DBA, un error de la herramienta de monitorización (un DROP en la ventana equivocada) podría destruir datos o estructuras.
 - Riesgo 2: si la contraseña se filtra, el atacante tiene control total de la base; con solo lectura el daño queda limitado.
 - Para leer el alert log: GRANT SELECT sobre SYS.V_$DIAG_ALERT_EXT (sobre el objeto V_$, no sobre el sinónimo V$), como se hace en la Parte J.
+
+## Parte C: reto OMF (que no vuelva a pasar)
+- Comando: ALTER SYSTEM SET db_create_file_dest='/opt/oracle/oradata/FREE/FREEPDB1' SCOPE=BOTH; (ejecutado dentro de FREEPDB1).
+- SCOPE=BOTH: se aplica ya en memoria y queda en el SPFILE, así que sobrevive al reinicio.
+- Efecto: un CREATE TABLESPACE tbs_x; sin cláusula DATAFILE crea el archivo automáticamente (OMF) dentro de esa carpeta, es decir, dentro del volumen. Una ruta relativa ya no puede dejar archivos fuera.
+- Hallazgos de la Parte C: 5 datafiles reubicados, 0 salían FUERA porque mi imagen enlaza dbs con el volumen, persistencia demostrada (mismas tablas por esquema antes y después), puerto 8181 eliminado.
+
+## Parte D
+- V003 deja los ADMIN_* como cuentas de solo esquema (AUTHENTICATION_TYPE NONE, estado OPEN). La contraseña vieja da ORA-01017.
+- V002 es idempotente: la 2ª ejecución dijo "ya aplicada" y no insertó nada.
