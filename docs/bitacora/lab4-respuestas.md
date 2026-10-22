@@ -50,3 +50,12 @@ Orden de corrección: 2 y 3 primero (la exposición de secretos ya ocurrió y el
 - Prueba: primero SCOPE=MEMORY, vigilando v$open_cursor y el alert log.
 - Rollback: ALTER SYSTEM SET open_cursors=300 SCOPE=BOTH; (o RESET).
 - Evidencia: PFILE antes y después versionados en git, y ticket asociado.
+
+## Parte G: memoria
+- Modelo: ASMM (memory_size=0, memory_target=0, sga_target=1536M); PGA aparte con pga_aggregate_target=512M.
+- Caché: ronda 1 = 355 lógicas / 261 físicas; ronda 2 = 247 lógicas / 0 físicas, acierto 1 - 0/247 = 100 %. Toda lectura física acaba en lógica; 261 > 244 bloques por cabecera de segmento y metadatos.
+- Parse: literales = 1000 duros, 920 ms de CPU, 960 ms; bind = 1 análisis, 0 ms, 10 ms (~96 veces más rápido). V$SQL: 1000 cursores y 38845 KB frente a 1 cursor y 39 KB.
+- PGA: automática = OPTIMAL, 0 KB en TEMP, 50 ms; manual 64 KB = 6 PASSES, 2048 KB en TEMP, 420 ms. maximum PGA (464 MB) < target (512 MB); el límite duro es pga_aggregate_limit (2 GB). VARIAS_PASADAS = 2: una es mi experimento.
+- Asesor sga_target: mismo resultado con todas las SGA porque la base está casi ociosa.
+- Reto: la firma 1863221789280198928 agrupa 1000 cursores de lab4_literal. Solución: variables de enlace en la aplicación (CURSOR_SHARING=FORCE solo es un parche).
+- Mi entorno difiere: shared pool 896 MB (enunciado 416 MB) y no se expulsaron cursores.

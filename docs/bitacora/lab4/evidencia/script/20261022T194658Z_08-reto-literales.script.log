@@ -1,0 +1,8 @@
+
+Session altered.
+
+
+FORCE_MATCHING_SIGNATURE   CURSORES EJECUCIONES EJEMPLO
+------------------------ ---------- ----------- --------------------------------------------------------------------------------
+     1863221789280198928       1000	   1000 SELECT /* lab4_literal */ COUNT(*) FROM admin_academia.aca_estudiantes WHERE est
+
