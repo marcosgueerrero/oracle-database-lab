@@ -59,3 +59,10 @@ Orden de corrección: 2 y 3 primero (la exposición de secretos ya ocurrió y el
 - Asesor sga_target: mismo resultado con todas las SGA porque la base está casi ociosa.
 - Reto: la firma 1863221789280198928 agrupa 1000 cursores de lab4_literal. Solución: variables de enlace en la aplicación (CURSOR_SHARING=FORCE solo es un parche).
 - Mi entorno difiere: shared pool 896 MB (enunciado 416 MB) y no se expulsaron cursores.
+
+## Parte H: procesos
+- 86 procesos Oracle de background frente a 53 procesos Linux: unos 33 son hilos dentro de un mismo proceso Linux.
+- LGWR: SPID 946 en v$process = PID 946 en /proc (db_lgwr_FREE). docker top muestra otro número porque es el PID del anfitrión (espacios de nombres de PID distintos).
+- ARC0..ARC3 existen porque mi base está en ARCHIVELOG (el enunciado, en NOARCHIVELOG, no los tiene).
+- Mi sesión: SID 177, SERIAL# 53361, servidor dedicado SPID 4147.
+- Reto de la sesión que más consume: SID 182, SERIAL# 24278, SPID 4719, PGA usada 3,3 MB. Consulta usada: scripts/lab4/09-reto-sesion.sql (v$session JOIN v$process, filtrando sesiones de usuario ACTIVE).
