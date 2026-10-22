@@ -22,3 +22,10 @@ Orden de corrección: 2 y 3 primero (la exposición de secretos ya ocurrió y el
 ## Parte D
 - V003 deja los ADMIN_* como cuentas de solo esquema (AUTHENTICATION_TYPE NONE, estado OPEN). La contraseña vieja da ORA-01017.
 - V002 es idempotente: la 2ª ejecución dijo "ya aplicada" y no insertó nada.
+
+## Parte E: instancia, arranque por etapas y alert log
+- ORA-01507 (NOMOUNT): v$database lee el control file, aún cerrado; v$parameter sí responde porque los parámetros están en memoria.
+- ORA-01219 (MOUNT): dba_tables está en SYSTEM, datafile aún cerrado; solo V$ y X$ responden.
+- FREEPDB1 se abrió sola en READ WRITE gracias a SAVE STATE (dba_pdb_saved_states: OPEN).
+- Alert log: ORA-00800 [Set Priority Failed] VKTM/LGWR = conocido (el contenedor no permite subir prioridad). ORA-27300..27303 chdir() = ruido del arranque del contenedor, a documentar. Sin recuperación de instancia real: las PDB estaban cerradas limpiamente (Crash Recovery excluding pdb 2/3).
+- Mi entorno difiere: 3 miembros de redo de 201 MB, ARCHIVELOG, 62 procesos de background.
