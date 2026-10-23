@@ -190,3 +190,30 @@ P18: B ('BIGFILE' como segundo argumento). P19: A y B (PCTFREE reserva espacio p
 37. C##OPS_RO solo lee: un error no rompe nada y una filtración limita el daño; SYSTEM es administrador completo. C##OPS_RO no puede escribir ni tiene privilegios ANY de escritura.
 38. Contraseñas literales de V000 (invalidadas con V003) y sys/<contraseña> en la línea de comandos de 08 (sustituido por / as sysdba).
 P24: B (usuario común de solo lectura con grant puntual). P25: B (PDB$SEED es la plantilla). P26: C (ORA-65094). P27: B (CLOSE IMMEDIATE antes del DROP). P28: A y C (leen el control file). P29: A (KCC = control file). P30: B (CDB_ en cada contenedor, filtrado en la PDB). P31: B (tempfiles no se respaldan). P32: B (CREATE SPFILE FROM MEMORY). P33: B (V$PWFILE_USERS). P34: A y B (ITL y directorio de filas). P35: B (64 KB y luego 1 MB). P36: B (ASSM). P37: B (BIGFILE local). P38: A (todo en caché). P39: A y B (más PCTFREE o filas mayores). P40: B (picos de latencia). P41: B (migrada cabía; encadenada no). P42: A (REBUILD o MOVE ONLINE). P43: A (V$DIAG_ALERT_EXT). P44: A y B (ampliar y revisar segmentos). P45: A y B (SGA/procesos y online redo compartidos). P46: B (ORA-01031).
+
+## Correcciones y justificaciones de las preguntas tipo examen
+- P34: A y B. La ITL y el directorio de filas son parte de la sobrecarga del bloque. En mi volcado, la ITL está en la cabecera (itc: 2, sección A) y el directorio de filas cuenta en hsiz = 0xc6 = 14 + 4 + 90*2 (hsiz no incluye la ITL; tsiz = 8192 - 100 - 4 = 8088).
+- P39: A y B. Más PCTFREE reserva espacio y filas más grandes caben en menos número por bloque; aumentar el tamaño de bloque aumentaría el bfr, y el índice y las estadísticas no lo cambian.
+- P45: A y B. La SGA, los procesos de background y los online redo logs son de toda la CDB. El undo no es siempre compartido: FREEPDB1 tiene su propio undotbs01.dbf (undo local); cada PDB tiene su SYSTEM y sus usuarios locales.
+
+### Justificaciones que faltaban
+- P1 (A y D): tras SHUTDOWN IMMEDIATE los datafiles comparten SCN, así que no hace falta redo y se abre con STARTUP; B, C y E son falsas, no exige ARCHIVELOG ni RMAN.
+- P2 (B): sin Enterprise no hay MOVE DATAFILE online; hay que poner OFFLINE, copiar, RENAME DATAFILE y poner ONLINE.
+- P-D1 (C): NO AUTHENTICATION no tiene forma de iniciar sesión; LOCK y EXPIRE se revierten con un desbloqueo o un cambio de clave.
+- P3 (A y C): STARTUP_TIME cambia en cada arranque; CREATED es la fecha de creación de la base (2026-07-05 en mi evidencia).
+- P4 (A y C): en NOMOUNT solo hay SPFILE y memoria, por eso v$parameter responde y se puede recrear el control file.
+- P5 (B): ALTER DATABASE ARCHIVELOG exige la base montada pero no abierta.
+- P6 (B): con SPFILE el SCOPE por defecto es BOTH.
+- P7 (C): PROCESSES es parámetro de instancia; desde una PDB da ORA-65040 (visto en mi evidencia 07).
+- P8 (A y C): STARTUP PFILE arranca con la copia buena y CREATE SPFILE FROM PFILE repara el SPFILE.
+- P13 (B): dentro de FREEPDB1 las V$ se filtran por contenedor (vi 9 datafiles con CON_ID 3).
+- P14 (B): sin el atributo CONTAINER_DATA el usuario común solo ve la raíz (caso de C##LAB4_AUDITOR).
+- P15 (A y D): el privilegio de esquema cubre las tablas futuras de ese esquema y ningún otro; no da UPDATE (ORA-41900 en mi evidencia 10).
+- P16 (B y D): control files y redo online son la base; el password file, el SPFILE y el alert log son archivos relacionados.
+- P17 (C): en NOARCHIVELOG solo se restaura la última copia y se pierde lo posterior.
+- P18 (B): ROWID_BLOCK_NUMBER asume SMALLFILE; con BIGFILE hay que pasar 'BIGFILE'.
+- P19 (A y B): PCTFREE 10 deja de aceptar INSERT por debajo del 10 % libre y ese espacio es para que las filas crezcan.
+- P20 (B): bfr = floor((8192-96)*0,9/180) = 40 y b = 2.000.000/40 = 50.000.
+- P21 (B): db file scattered read es lectura multibloque a la buffer cache.
+- P22 (A y C): LIST CHAINED ROWS identifica las filas y MOVE ONLINE con más PCTFREE cura la migración.
+- P23 (B): una fila de 12000 bytes no cabe en un bloque de 8 KB, está encadenada y MOVE no lo arregla.
