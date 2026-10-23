@@ -184,3 +184,9 @@ P13: B (en la PDB V$ se filtra por CON_ID). P14: B (falta CONTAINER_DATA). P15: 
 34. (800*3 + 200*4)/1000 = 3,2 lecturas lógicas por búsqueda.
 35. MOVE cambia los ROWID, el índice queda UNUSABLE; en producción MOVE ONLINE o REBUILD.
 P18: B ('BIGFILE' como segundo argumento). P19: A y B (PCTFREE reserva espacio para crecer las filas). P20: B (bfr 40, b = 50000). P21: B (lectura multibloque a la caché). P22: A y C. P23: B (encadenada; MOVE no la arregla).
+
+## Bloque 6 (N, O y adicionales)
+36. (1) 17 archived logs = 2895 MB sin FRA: riesgo alto, configurar FRA con límite (Lab 5), prioridad alta. (2) 2 control files juntos y 1 miembro de redo: riesgo alto, multiplexar, prioridad alta. (3) ADR fuera del volumen: riesgo medio, diagnostic_dest persistente, prioridad media.
+37. C##OPS_RO solo lee: un error no rompe nada y una filtración limita el daño; SYSTEM es administrador completo. C##OPS_RO no puede escribir ni tiene privilegios ANY de escritura.
+38. Contraseñas literales de V000 (invalidadas con V003) y sys/<contraseña> en la línea de comandos de 08 (sustituido por / as sysdba).
+P24: B (usuario común de solo lectura con grant puntual). P25: B (PDB$SEED es la plantilla). P26: C (ORA-65094). P27: B (CLOSE IMMEDIATE antes del DROP). P28: A y C (leen el control file). P29: A (KCC = control file). P30: B (CDB_ en cada contenedor, filtrado en la PDB). P31: B (tempfiles no se respaldan). P32: B (CREATE SPFILE FROM MEMORY). P33: B (V$PWFILE_USERS). P34: A y B (ITL y directorio de filas). P35: B (64 KB y luego 1 MB). P36: B (ASSM). P37: B (BIGFILE local). P38: A (todo en caché). P39: A y B (más PCTFREE o filas mayores). P40: B (picos de latencia). P41: B (migrada cabía; encadenada no). P42: A (REBUILD o MOVE ONLINE). P43: A (V$DIAG_ALERT_EXT). P44: A y B (ampliar y revisar segmentos). P45: A y B (SGA/procesos y online redo compartidos). P46: B (ORA-01031).
