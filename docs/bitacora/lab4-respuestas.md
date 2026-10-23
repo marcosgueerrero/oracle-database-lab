@@ -103,3 +103,11 @@ Orden de corrección: 2 y 3 primero (la exposición de secretos ya ocurrió y el
 - Fecha de la fila: bytes 78 7e 0a 16 13 3b 12 -> 2026-10-22 18:58:17 (carga de V002).
 - Espacio: 230 llenos + 1 + 13 = 244 bloques bajo la HWM; 17 extensiones (16 de 64 KB + 1 de 1 MB); 256 bloques asignados. TBS_ACADEMIA es BIGFILE: relative_fno 1024, hay que usar 'BIGFILE' en ROWID_BLOCK_NUMBER.
 - Reto "abre otro bloque": no realizado todavía.
+
+## Parte D (ampliación)
+- No se edita V000 porque ya se aplicó: una migración aplicada es historia, y el repositorio debe describir lo que se ejecutó. Se corrige con una migración nueva (V003).
+- Invalidar la contraseña es mejor que borrarla del archivo: la contraseña sigue en el historial de Git, así que se da por comprometida. NO AUTHENTICATION la hace inservible (ORA-01017 al probar la antigua) aunque alguien la conozca.
+- Cuentas de solo esquema: poseen los objetos pero nadie puede iniciar sesión con ellas; su ACCOUNT_STATUS sigue OPEN porque no están bloqueadas, simplemente no tienen forma de autenticarse (distinto de ACCOUNT LOCK, que se puede desbloquear).
+- 08 v2 usa "/ as sysdba" (autenticación del sistema operativo dentro del contenedor): ya no pasa sys/<contraseña> en la línea de comandos, visible con ps y en los eventos de docker.
+- V002 carga 20000 estudiantes, 40 asignaturas y 60000 matrículas; es idempotente (comprueba si ya hay filas), por eso la 2ª ejecución no insertó nada. La fila 101 (00000101X, ACTIVO) es el ejemplo continuo.
+- Pregunta P-D1: respuesta C (ALTER USER ... NO AUTHENTICATION).
