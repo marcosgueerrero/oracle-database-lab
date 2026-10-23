@@ -120,3 +120,15 @@ Orden de corrección: 2 y 3 primero (la exposición de secretos ya ocurrió y el
 - Las lecturas físicas son rápidas porque FLUSH BUFFER_CACHE no vacía la caché de páginas de Linux.
 - Esperas de instancia: sequential 288 us, scattered 647 us, direct path 1266 us.
 - Reto ACA_MATRICULAS: predicción ~330 bloques con R~40 (completar con AVG_ROW_LEN real); asignados 384.
+
+### Parte L: corrección del reto ACA_MATRICULAS
+- AVG_ROW_LEN real = 30, no 40. Predicción U3: bfr = floor(8096*0.9/30) = 242, b = ceil(60000/242) = 248 bloques. Real: 370 bajo la HWM (384 asignados). La fórmula no cuenta el directorio de filas, la cabecera de fila, la ITL ni el espacio libre al final del segmento.
+- Recorrido completo en HDD a 150 MB/s: 370 x 8 KB / 150 MB/s = ~20 ms.
+
+## Parte M: filas migradas y encadenadas
+- PCTFREE 0 + UPDATE de 1 a 300 bytes en 1 de cada 5 filas: CHAIN_CNT 1000 (20 %), la tabla pasa de 13 a 58 bloques. CHAIN_CNT no distingue migradas de encadenadas y solo lo rellena ANALYZE, no DBMS_STATS.
+- Coste: 3,2 lecturas lógicas por búsqueda = (800*3 + 200*4)/1000; table fetch continued row = 200. Un 7 % más de trabajo por acceso.
+- Bloque: cabeza con fb --H----- y nrid 0x1625.0 (bloque 5669 en BIGFILE). Fila normal: --H-FL--.
+- Encadenamiento: ANCHA (fila de ~12000 bytes) no cabe en ningún bloque de 8 KB, CHAIN_CNT 1; MOVE no lo cura, solo bloque mayor o rediseño.
+- Cura: MOVE PCTFREE 20 deja CHAIN_CNT 0 (63 bloques) pero el índice queda UNUSABLE porque cambian los ROWID; REBUILD, o MOVE ONLINE en producción.
+- Mi ejecución: fila listada id 2200, archivo 24, bloque 5643, ranura 0.
