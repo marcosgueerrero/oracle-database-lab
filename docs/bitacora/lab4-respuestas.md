@@ -111,3 +111,12 @@ Orden de corrección: 2 y 3 primero (la exposición de secretos ya ocurrió y el
 - 08 v2 usa "/ as sysdba" (autenticación del sistema operativo dentro del contenedor): ya no pasa sys/<contraseña> en la línea de comandos, visible con ps y en los eventos de docker.
 - V002 carga 20000 estudiantes, 40 asignaturas y 60000 matrículas; es idempotente (comprueba si ya hay filas), por eso la 2ª ejecución no insertó nada. La fila 101 (00000101X, ACTIVO) es el ejemplo continuo.
 - Pregunta P-D1: respuesta C (ALTER USER ... NO AUTHENTICATION).
+
+## Parte L: capacidad y coste
+- bfr (U3) = floor((8192-96)*0.9/76) = 95 -> b = 211; bfr (Oracle) = 93 -> b = 216; medido: 231 bloques con filas (media 86,6); estadísticas: 244 (230 llenos + 1 + 13 casi vacíos); asignados: 256. La fórmula es un modelo: ignora filas de 78-80 bytes, bloques vacíos al final y asignación por extensiones.
+- Costes medidos: lógica 3,23 us; física aleatoria 107,5 us; secuencial 59,4 us/bloque (131 MB/s, ~84 bloques/petición).
+- T_secuencial 273 ms; T_aleatorio = 4597 x 107,5 us = 494 ms (1,8 veces). Cociente 0,553; umbral 0,64 % de las filas.
+- HDD (150 MB/s, 5 ms): c_sec ~52 us, cociente ~0,0104, umbral ~0,012 %. Mismo método, otro hardware, otra decisión.
+- Las lecturas físicas son rápidas porque FLUSH BUFFER_CACHE no vacía la caché de páginas de Linux.
+- Esperas de instancia: sequential 288 us, scattered 647 us, direct path 1266 us.
+- Reto ACA_MATRICULAS: predicción ~330 bloques con R~40 (completar con AVG_ROW_LEN real); asignados 384.
