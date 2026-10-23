@@ -84,3 +84,12 @@ Orden de corrección: 2 y 3 primero (la exposición de secretos ya ocurrió y el
 ### Parte J: correcciones de la revisión
 - $ORACLE_HOME/dbs es un enlace simbólico a /opt/oracle/oradata/dbconfig/FREE/dbs. Un `ls -l` sin barra final solo muestra el enlace; con barra final (dbs/) lista spfileFREE.ora y orapwFREE, que están en el volumen. Evidencia: 11-archivos-so.dbs-enlace.
 - Hallazgo para la autopsia (Parte N): el ADR (/opt/oracle/diag, 29 MB, 215 trazas) vive en la capa del contenedor, no en el volumen. Riesgo MEDIO: al recrear el contenedor se pierde el alert log, justo lo que necesita un postmortem. Acción propuesta: diagnostic_dest en almacenamiento persistente o envío centralizado de logs. No se cambia en este laboratorio porque exige reinicio y los scripts usan la ruta actual.
+
+## Parte J: archivos
+- La base son 16 datafiles (4489 MB), 3 tempfiles (124 MB), 2 control files (36 MB) y 3 redo online (600 MB). Relacionados: SPFILE, password file, ADR y 16 redo archivados (2704 MB, por mi ARCHIVELOG).
+- El password file es relacionado, no parte de la base, pero sin él no hay SYSDBA remoto. SPFILE y password file viven en el volumen: dbs es un enlace a /opt/oracle/oradata/dbconfig/FREE/dbs.
+- academia01.dbf mide 104865792 bytes = 100 MB + 8192 (cabecera del archivo, bloque 0).
+- TEMP no se respalda: se recrea vacío.
+- Puntos únicos de fallo: 2 control files en la misma carpeta y 1 miembro por grupo de redo.
+- Copia en frío completa: 5249 MB (datafiles + tempfiles + control + redo) más SPFILE y password file. Con RMAN sobrarían tempfiles, redo online y el segundo control file.
+- GRANT sobre V_$DIAG_ALERT_EXT (objeto), no sobre el sinónimo V$.
