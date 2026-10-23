@@ -151,3 +151,10 @@ P1: A y D. P2: B. P-D1: C.
 10. v$parameter = memoria, v$spparameter = SPFILE. db_files: memoria 200, SPFILE 300 hasta reiniciar; tras RESET, no especificado.
 11. PROCESSES dimensiona la SGA al arrancar: da ORA-02095 aunque v$parameter diga IMMEDIATE.
 P3: A y C. P4: A y C. P5: B. P6: B. P7: C. P8: A y C.
+
+## Bloque 3 (G y H)
+12. ASMM: memory_size=0, memory_target=0, sga_target=1536M; PGA aparte con pga_aggregate_target=512M.
+13. Ronda 1: 355 lógicas / 261 físicas; ronda 2: 247 / 0; acierto 1 - 0/247 = 100 %. Toda lectura física acaba en lógica.
+14. Literales: 1000 duros, 920 ms CPU, 960 ms, 1000 cursores, 38845 KB. Bind: 1 análisis, 0 ms, 10 ms, 1 cursor, 39 KB.
+15. LGWR SPID 946 = PID 946 en /proc; docker top muestra el PID del anfitrión (otro espacio de nombres).
+P9: B (con ASMM, db_cache_size es un mínimo). P10: A y D (sort area y memoria de sesión están en la PGA). P-G1: B (variables de enlace en la aplicación). P-G2: B (no cupo en la PGA y releyó 6 veces desde TEMP). P11: C (el COMMIT espera a LGWR). P12: B y D (PMON y SMON son obligatorios).
