@@ -144,3 +144,10 @@ Orden de corrección: 2 y 3 primero (la exposición de secretos ya ocurrió y el
 6. V000 ya aplicada: se corrige con V003. Invalidar > borrar porque la contraseña sigue en el historial de Git.
 7. Demuestra que el estado vive en el volumen; se ejecuta tras reubicar para no perder archivos.
 P1: A y D. P2: B. P-D1: C.
+
+## Bloque 2 (E y F)
+8. Instancia: arrancada 2026-10-22 19:01, 62 procesos de background, SGA 1536 MB. Base: DBID 1509902213, 16 datafiles (4489 MB), creada 2026-07-05.
+9. NOMOUNT lee el SPFILE (v$parameter sí, v$database ORA-01507); MOUNT abre control files (v$database sí, dba_tables ORA-01219); OPEN abre datafiles y redo.
+10. v$parameter = memoria, v$spparameter = SPFILE. db_files: memoria 200, SPFILE 300 hasta reiniciar; tras RESET, no especificado.
+11. PROCESSES dimensiona la SGA al arrancar: da ORA-02095 aunque v$parameter diga IMMEDIATE.
+P3: A y C. P4: A y C. P5: B. P6: B. P7: C. P8: A y C.
