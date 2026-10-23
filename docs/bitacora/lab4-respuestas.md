@@ -158,3 +158,15 @@ P3: A y C. P4: A y C. P5: B. P6: B. P7: C. P8: A y C.
 14. Literales: 1000 duros, 920 ms CPU, 960 ms, 1000 cursores, 38845 KB. Bind: 1 análisis, 0 ms, 10 ms, 1 cursor, 39 KB.
 15. LGWR SPID 946 = PID 946 en /proc; docker top muestra el PID del anfitrión (otro espacio de nombres).
 P9: B (con ASMM, db_cache_size es un mínimo). P10: A y D (sort area y memoria de sesión están en la PGA). P-G1: B (variables de enlace en la aplicación). P-G2: B (no cupo en la PGA y releyó 6 veces desde TEMP). P11: C (el COMMIT espera a LGWR). P12: B y D (PMON y SMON son obligatorios).
+
+## Bloque 4 (I y J)
+16. Desde la raíz SYS ve 4+3+9=16 datafiles; dentro de FREEPDB1 las vistas se filtran por contenedor y quedan 9.
+17. Oracle no revela objetos que no puedes ver: dba_tables responde ORA-00942 como si no existiera.
+18. C##LAB4_AUDITOR carecía de CONTAINER_DATA; C##OPS_RO lo tiene en ALL. Los igualaría ALTER USER c##lab4_auditor SET CONTAINER_DATA = ALL CONTAINER = CURRENT;
+19. Ventaja: cubre todas las tablas del esquema, incluidas las futuras. Riesgo: datos sensibles nuevos quedan expuestos automáticamente.
+20. COMMON_USER_PREFIX = C##; crear lab4_local sin prefijo en la raíz dio ORA-65096.
+21. Base: 16 datafiles, 3 tempfiles, 2 control files, 3 redo online. Relacionados: SPFILE, password file (sin él no hay SYSDBA remoto), ADR, redo archivado.
+22. 104865792 = 100*1048576 + 8192: cabecera del archivo (bloque 0).
+23. 2 control files en la misma carpeta y 1 miembro por grupo de redo: puntos únicos de fallo.
+24. Al recrear el contenedor se pierde el alert log, necesario en un postmortem.
+P13: B (en la PDB V$ se filtra por CON_ID). P14: B (falta CONTAINER_DATA). P15: A y D (cubre tablas futuras y solo ese esquema). P16: B y D (control files y redo online son la base). P17: C (en NOARCHIVELOG solo se restaura la última copia completa).
