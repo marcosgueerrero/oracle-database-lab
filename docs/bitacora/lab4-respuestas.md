@@ -80,3 +80,7 @@ Orden de corrección: 2 y 3 primero (la exposición de secretos ya ocurrió y el
 - Usuario LOCAL en FREEPDB1: CREATE USER auditora_ext IDENTIFIED BY "<clave>"; GRANT CREATE SESSION TO auditora_ext;
 - Privilegio mínimo: GRANT READ ANY TABLE ON SCHEMA admin_clinica TO auditora_ext;
 - Último día: REVOKE READ ANY TABLE ON SCHEMA admin_clinica FROM auditora_ext; DROP USER auditora_ext;
+
+### Parte J: correcciones de la revisión
+- $ORACLE_HOME/dbs es un enlace simbólico a /opt/oracle/oradata/dbconfig/FREE/dbs. Un `ls -l` sin barra final solo muestra el enlace; con barra final (dbs/) lista spfileFREE.ora y orapwFREE, que están en el volumen. Evidencia: 11-archivos-so.dbs-enlace.
+- Hallazgo para la autopsia (Parte N): el ADR (/opt/oracle/diag, 29 MB, 215 trazas) vive en la capa del contenedor, no en el volumen. Riesgo MEDIO: al recrear el contenedor se pierde el alert log, justo lo que necesita un postmortem. Acción propuesta: diagnostic_dest en almacenamiento persistente o envío centralizado de logs. No se cambia en este laboratorio porque exige reinicio y los scripts usan la ruta actual.
