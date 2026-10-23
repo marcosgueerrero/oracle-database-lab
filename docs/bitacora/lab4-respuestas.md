@@ -93,3 +93,13 @@ Orden de corrección: 2 y 3 primero (la exposición de secretos ya ocurrió y el
 - Puntos únicos de fallo: 2 control files en la misma carpeta y 1 miembro por grupo de redo.
 - Copia en frío completa: 5249 MB (datafiles + tempfiles + control + redo) más SPFILE y password file. Con RMAN sobrarían tempfiles, redo online y el segundo control file.
 - GRANT sobre V_$DIAG_ALERT_EXT (objeto), no sobre el sinónimo V$.
+
+## Parte K: bloque y fila
+- ROWID de la fila 101: AAAR2lAAAAAAAMOAAF = objeto AAAR2l (17*64^2+54*64+37 = 73125, coincide con DATA_OBJECT_ID), archivo AAA (0, BIGFILE), bloque AAAAMO (12*64+14 = 782), fila AAF (5).
+- avsp = fseo - fsbo: 0x427 - 0xc6 = 1063 - 198 = 865 = 0x361. nrow=90; hsiz 0xc6 = 14 + 4 + 90*2.
+- ITL ranura 1: --U-, Lck 90 = limpieza diferida de bloques (el COMMIT no revisita los bloques). Un UPDATE de la fila 101 usaría la ranura 2 libre o limpiaría antes la 1.
+- Fila 101: tl 78 = 3 (fb, lb, cc) + 7 (bytes de longitud) + 68 (datos); 80 con la entrada del directorio. AVG_ROW_LEN 76 es media de estadísticas.
+- Caben 90 filas: con 865 libres, otra fila (80) dejaría 785 < 809 (PCTFREE 10 de 8088).
+- Fecha de la fila: bytes 78 7e 0a 16 13 3b 12 -> 2026-10-22 18:58:17 (carga de V002).
+- Espacio: 230 llenos + 1 + 13 = 244 bloques bajo la HWM; 17 extensiones (16 de 64 KB + 1 de 1 MB); 256 bloques asignados. TBS_ACADEMIA es BIGFILE: relative_fno 1024, hay que usar 'BIGFILE' en ROWID_BLOCK_NUMBER.
+- Reto "abre otro bloque": no realizado todavía.
