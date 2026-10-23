@@ -132,3 +132,15 @@ Orden de corrección: 2 y 3 primero (la exposición de secretos ya ocurrió y el
 - Encadenamiento: ANCHA (fila de ~12000 bytes) no cabe en ningún bloque de 8 KB, CHAIN_CNT 1; MOVE no lo cura, solo bloque mayor o rediseño.
 - Cura: MOVE PCTFREE 20 deja CHAIN_CNT 0 (63 bloques) pero el índice queda UNUSABLE porque cambian los ROWID; REBUILD, o MOVE ONLINE en producción.
 - Mi ejecución: fila listada id 2200, archivo 24, bloque 5643, ranura 0.
+
+# Preguntas de comprobación y tipo examen
+
+## Bloque 1 (A a D)
+1. Consistente: SHUTDOWN IMMEDIATE hace checkpoint final y deja el mismo SCN en todos los datafiles; abierta sería inconsistente y requeriría ARCHIVELOG y RMAN.
+2. manifiesto.txt describe la copia; SHA256SUMS da la huella de cada archivo; restaurar-estado.sh verifica el SHA-256 antes de tocar nada (mi sha256sum --check dio OK).
+3. RPO: lo hecho desde la copia 20261022T183755Z. RTO: lo que tarde restaurar-estado.sh (no medido aún).
+4. En $ORACLE_HOME/dbs: ruta relativa sin DB_CREATE_FILE_DEST. Lo evita db_create_file_dest o una ruta absoluta.
+5. RENAME DATAFILE solo cambia el control file; el archivo se copia antes.
+6. V000 ya aplicada: se corrige con V003. Invalidar > borrar porque la contraseña sigue en el historial de Git.
+7. Demuestra que el estado vive en el volumen; se ejecuta tras reubicar para no perder archivos.
+P1: A y D. P2: B. P-D1: C.
