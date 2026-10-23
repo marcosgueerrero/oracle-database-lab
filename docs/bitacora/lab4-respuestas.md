@@ -170,3 +170,17 @@ P9: B (con ASMM, db_cache_size es un mínimo). P10: A y D (sort area y memoria d
 23. 2 control files en la misma carpeta y 1 miembro por grupo de redo: puntos únicos de fallo.
 24. Al recrear el contenedor se pierde el alert log, necesario en un postmortem.
 P13: B (en la PDB V$ se filtra por CON_ID). P14: B (falta CONTAINER_DATA). P15: A y D (cubre tablas futuras y solo ese esquema). P16: B y D (control files y redo online son la base). P17: C (en NOARCHIVELOG solo se restaura la última copia completa).
+
+## Bloque 5 (K, L y M)
+25. AAAR2lAAAAAAAMOAAF: objeto AAAR2l = 17*64^2+54*64+37 = 73125 (= DATA_OBJECT_ID), archivo AAA = 0 (BIGFILE), bloque AAAAMO = 12*64+14 = 782, fila AAF = 5.
+26. nrow = filas del bloque (90); fsbo/fseo = inicio/fin del hueco libre; avsp = espacio disponible. 0x427 - 0xc6 = 1063 - 198 = 865 = 0x361.
+27. Lck 90 y --U-: transacción de V002 confirmada pero filas aún marcadas: limpieza diferida de bloques (el COMMIT no revisita los bloques).
+28. 78 = 3 (fb, lb, cc) + 7 (bytes de longitud) + 68 (datos).
+29. bfr = floor((8192-96)*0,9/76) = 95; b = ceil(20000/95) = 211. Real 244: filas de 78-80 bytes, 13 bloques casi vacíos al final y asignación por extensiones.
+30. Lógica 3,23 us; física aleatoria 107,5 us; secuencial 59,4 us/bloque.
+31. HDD: c_sec ~52 us, cociente ~0,0104, umbral ~0,012 %.
+32. FLUSH BUFFER_CACHE no vacía la caché de páginas de Linux; el método sigue siendo válido, cambian las cifras.
+33. Migración: UPDATE agranda la fila y se muda; ANALYZE/LIST CHAINED ROWS; MOVE (ONLINE) con PCTFREE. Encadenamiento: fila mayor que un bloque; bloque mayor o rediseño.
+34. (800*3 + 200*4)/1000 = 3,2 lecturas lógicas por búsqueda.
+35. MOVE cambia los ROWID, el índice queda UNUSABLE; en producción MOVE ONLINE o REBUILD.
+P18: B ('BIGFILE' como segundo argumento). P19: A y B (PCTFREE reserva espacio para crecer las filas). P20: B (bfr 40, b = 50000). P21: B (lectura multibloque a la caché). P22: A y C. P23: B (encadenada; MOVE no la arregla).
