@@ -27,3 +27,10 @@
 - Curva (tabla entera 5232): CF malo cruza entre 0,5 % (4875) y 1 % (9920); el optimizador cambia a recorrido completo en el 0,2 %; CF bueno solo pierde al 100 % (7875).
 - Teoría: k/r < 1/188 = 0,53 % (lecturas lógicas) y 0,11 % con disco (c_sec/c_aleat = 1/5). Los tres puntos difieren porque el optimizador asume que la lectura aleatoria es más cara y las lecturas lógicas no lo reflejan.
 - E1: B.
+
+## Parte F
+- Regla 1: 1486 -> 4. Regla 2: 5285 -> 323. Regla 3: 5232 -> 106 (el plan muestra filter(TO_NUMBER("CODIGO_POSTAL")=30001)). Regla 5: 1486 -> 6 (BITMAP OR o UNION).
+- Regla 4: '%ez' recorrido completo (1523); 'Gonz%' usa el índice pero lee 2024 > 1523: sargable no significa que el índice compense (2,1 % con CF malo supera el punto de equilibrio).
+- Q11: 5232 en ambas versiones; el recorrido completo es lo correcto (un año = un tercio de los pedidos).
+- F1: B. F2: A y C.
+- Reto de revisión: <completar con las lecturas de 05-reto-revision y el comentario>.
