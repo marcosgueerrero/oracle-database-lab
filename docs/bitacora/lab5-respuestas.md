@@ -34,3 +34,7 @@
 - Q11: 5232 en ambas versiones; el recorrido completo es lo correcto (un año = un tercio de los pedidos).
 - F1: B. F2: A y C.
 - Reto de revisión: <completar con las lecturas de 05-reto-revision y el comentario>.
+## Parte G · Optimización y Ciclo de Vida de Índices (V005)
+- Propuesta del compañero (9 índices): duplica las lecturas lógicas de inserción (~60k frente a ~30k) por el mantenimiento excesivo de hojas y bloques de undo/redo.
+- V005 (5 índices óptimos): reduce drásticamente el coste de escritura (~34k lecturas en INSERT) manteniendo solo los índices necesarios y validados por uso real (Q2, Q3, Q7, Q9, Q12).
+- Ciclo de vida: el uso de índices invisibles permitió validar la retirada de IX_PED_IMPORTE sin interrupciones antes de su borrado definitivo en V005.
