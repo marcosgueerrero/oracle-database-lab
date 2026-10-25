@@ -1,0 +1,29 @@
+
+Session altered.
+
+
+Index created.
+
+
+Index created.
+
+revision rota		       filas=	 981  lecturas l??gicas=   1487  f??sica
+s=    0     24.5 ms
+			       plan: TABLE ACCESS FULL CLIENTE
+
+PL/SQL procedure successfully completed.
+
+revision reescrita	       filas=	 981  lecturas l??gicas=    986  f??sica
+s=    0      8.1 ms
+			       plan: HASH UNIQUE > UNION-ALL > TABLE ACCESS BY I
+NDEX ROWID BATCHED CLIENTE > INDEX RANGE SCAN IX_CLI_TELEFONO > TABLE ACCESS BY
+INDEX ROWID BATCHED CLIENTE > INDEX RANGE SCAN IX_CLI_APELLIDOS
+
+PL/SQL procedure successfully completed.
+
+
+Index dropped.
+
+
+Index dropped.
+
