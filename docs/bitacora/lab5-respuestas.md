@@ -21,3 +21,9 @@
 - ROWID de la hoja: 00 00 03 1b 00 00 = bloque 795 (0x31B), ranura 0; sin número de archivo porque el tablespace es BIGFILE.
 - Mapas de PK_PEDIDO (99,9 %) e IX_PED_CLIENTE (89,7 %): uniformes, sin patrón cola.
 - C1: C. C2: C.
+
+## Parte E
+- CF: PK_PEDIDO e IX_PED_FECHA 5220 (bloques 5320, bueno); IX_PED_CLIENTE 999041 e IX_PED_IMPORTE 998078 (filas 1000000, malo). El LAG calculado coincide con el diccionario. REBUILD no lo mejora: es propiedad de la tabla.
+- Curva (tabla entera 5232): CF malo cruza entre 0,5 % (4875) y 1 % (9920); el optimizador cambia a recorrido completo en el 0,2 %; CF bueno solo pierde al 100 % (7875).
+- Teoría: k/r < 1/188 = 0,53 % (lecturas lógicas) y 0,11 % con disco (c_sec/c_aleat = 1/5). Los tres puntos difieren porque el optimizador asume que la lectura aleatoria es más cara y las lecturas lógicas no lo reflejan.
+- E1: B.
