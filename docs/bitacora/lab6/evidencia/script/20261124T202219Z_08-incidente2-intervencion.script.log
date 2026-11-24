@@ -1,0 +1,19 @@
+== EVIDENCIA alumno=E030 hora=2026-11-24T20:22:19Z origen=08-incidente2-intervencion
+== EVIDENCIA contenedor=a01c5e2cc214 dbid=1509902213 arranque=2026-11-24T19:06:49 scn=7531942
+
+Session altered.
+
+== Arrancar el servicio de la aplicación ==
+
+PL/SQL procedure successfully completed.
+
+== Guardar el estado de la PDB ==
+
+Session altered.
+
+
+Pluggable database altered.
+
+== Registrar los servicios en el listener ==
+
+System altered.

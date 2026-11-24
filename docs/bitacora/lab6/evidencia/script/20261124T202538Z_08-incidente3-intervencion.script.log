@@ -1,0 +1,23 @@
+== EVIDENCIA alumno=E030 hora=2026-11-24T20:25:38Z origen=08-incidente3-intervencion
+== EVIDENCIA contenedor=a01c5e2cc214 dbid=1509902213 arranque=2026-11-24T19:06:49 scn=7532147
+
+Session altered.
+
+== Desbloquear APP_ACADEMIA ==
+
+User altered.
+
+== Comprobar estado ==
+
+USERNAME
+------------------------------------------------------------------------------------------------------------------------
+ACCOUNT_STATUS
+--------------------------------
+PROFILE
+------------------------------------------------------------------------------------------------------------------------
+APP_ACADEMIA
+OPEN
+DEFAULT
+
+
+1 row selected.
