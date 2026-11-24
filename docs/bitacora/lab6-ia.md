@@ -35,3 +35,18 @@ He leído la política de uso de IA de la asignatura.
   docs/bitacora/lab6/evidencia/script/20261124T185039Z_01-turno.script.log
   docs/bitacora/lab6/evidencia/script/20261124T185105Z_01-automatizacion.script.log
   docs/bitacora/lab6/evidencia/spool/20261124T185108Z_01-automatizacion.spool.log
+
+## Entrada 3
+- **Herramienta:** ChatGPT (OpenAI, GPT-6).
+- **Prompt (literal, copiado tal cual):**
+  seguimos
+- **Código recibido (el fragmento, o la ruta del archivo donde está):**
+  Comandos Bash para ejecutar los scripts:
+  scripts/lab6/04-tres-miradas.sh
+  scripts/lab6/04-diccionario.sql
+  scripts/lab6/04-deltas.sql
+- **Dónde lo usé (parte, script o pregunta):** Parte E, diccionario y medición de actividad.
+- **Propósito (para qué lo necesitaba):** Realizar los ejercicios de la Parte E y obtener las evidencias correspondientes.
+- **Qué hace (con mis palabras; línea a línea si es SQL corto):** Los scripts comparan lo que pueden consultar tres identidades diferentes, examinan las vistas y sinónimos del diccionario y miden el coste de una carga de consultas mediante dos fotografías de las estadísticas de Oracle.
+- **Evidencia de ejecución (archivo de docs/bitacora/lab6/evidencia con mi cabecera):**
+  Evidencias de los ejercicios E.1, E.2 y E.3 en docs/bitacora/lab6/evidencia/script/ y docs/bitacora/lab6/evidencia/spool/.
