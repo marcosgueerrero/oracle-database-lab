@@ -1,0 +1,20 @@
+== EVIDENCIA alumno=E030 hora=2026-11-24T20:20:06Z origen=08-incidente1-intervencion
+== EVIDENCIA contenedor=a01c5e2cc214 dbid=1509902213 arranque=2026-11-24T19:06:49 scn=7530824
+== Intervención mínima: terminar solo la sesión bloqueadora ==
+
+System altered.
+
+== Validar la ficha del alumno 101 ==
+
+Session altered.
+
+
+ESTUDIANTE_ID ESTADO
+------------- --------------------
+	  101 ACTIVO
+
+1 row selected.
+
+== Comprobar las sesiones implicadas ==
+
+no rows selected

@@ -1,0 +1,28 @@
+== EVIDENCIA alumno=E030 hora=2026-11-24T20:23:42Z origen=08-incidente2-intervencion
+== EVIDENCIA contenedor=a01c5e2cc214 dbid=1509902213 arranque=2026-11-24T19:06:49 scn=7532035
+
+Session altered.
+
+== Arrancar el servicio de la aplicación ==
+BEGIN DBMS_SERVICE.START_SERVICE('academia_app'); END;
+
+*
+ERROR at line 1:
+ORA-44305: service academia_app is running
+ORA-06512: at "SYS.DBMS_SYS_ERROR", line 86
+ORA-06512: at "SYS.DBMS_SERVICE_ERR", line 27
+ORA-06512: at "SYS.DBMS_SERVICE", line 636
+ORA-06512: at line 1
+Help: https://docs.oracle.com/error-help/db/ora-44305/
+
+
+== Guardar el estado de la PDB ==
+
+Session altered.
+
+
+Pluggable database altered.
+
+== Registrar los servicios en el listener ==
+
+System altered.

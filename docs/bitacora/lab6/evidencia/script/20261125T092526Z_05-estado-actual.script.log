@@ -1,0 +1,51 @@
+== EVIDENCIA alumno=E030 hora=2026-11-25T09:25:26Z origen=lab6-f-estado-actual
+== EVIDENCIA contenedor=a01c5e2cc214 dbid=1509902213 arranque=2026-11-24T19:06:49 scn=7588219
+
+Session altered.
+
+== Estado actual de los tablespaces ==
+
+TABLESPACE_NAME 	       ASIGNADO_MB   LIBRE_MB	  MAX_MB
+------------------------------ ----------- ---------- ----------
+TBS_ACADEMIA_HIST			40	 31.6	      40
+
+== Uso y segmentos del historico ==
+
+TABLESPACE_NAME 	       USED_SPACE TABLESPACE_SIZE PCT_SOBRE_MAX
+------------------------------ ---------- --------------- -------------
+TBS_ACADEMIA_HIST		     1080	     5120	  21.09
+
+
+OWNER
+--------------------------------------------------------------------------------------------------------------------------------
+SEGMENT_NAME															     BLOCKS	    MB
+-------------------------------------------------------------------------------------------------------------------------------- ---------- ----------
+CARGA_HIST
+REGISTRO																304	  2.38
+
+
+== Filas y cuota actuales ==
+
+     FILAS  ID_MINIMO  ID_MAXIMO
+---------- ---------- ----------
+      2000	   10	   20000
+
+
+USERNAME   TABLESPACE_NAME		    USADO_MB  MAXIMO_MB
+---------- ------------------------------ ---------- ----------
+CARGA_HIST TBS_ACADEMIA_HIST			2.38	     30
+
+== Umbrales de alerta ==
+
+TABLESPACE_NAME 	       WARNING_OPER
+------------------------------ ------------
+WARNING_VALUE
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+CRITICAL_OPE
+------------
+CRITICAL_VALUE
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+TBS_ACADEMIA_HIST	       GE
+80
+GE
+95
