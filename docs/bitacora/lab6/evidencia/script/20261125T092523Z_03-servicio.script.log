@@ -1,8 +1,9 @@
+== EVIDENCIA alumno=E030 hora=2026-11-25T09:25:23Z origen=03-servicio
+== EVIDENCIA contenedor=a01c5e2cc214 dbid=1509902213 arranque=2026-11-24T19:06:49 scn=7587352
 
 Session altered.
 
-Servicio academia_app creado
-Servicio academia_app arrancado
+Servicio academia_app ya estaba arrancado
 
 PL/SQL procedure successfully completed.
 

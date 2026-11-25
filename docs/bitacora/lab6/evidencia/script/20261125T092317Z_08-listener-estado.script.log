@@ -1,5 +1,7 @@
+== EVIDENCIA alumno=E030 hora=2026-11-25T09:23:18Z origen=08-listener-estado
+== EVIDENCIA contenedor=a01c5e2cc214 dbid=1509902213 arranque=2026-11-24T19:06:49 scn=7587170
 
-LSNRCTL for Linux: Version 23.26.3.0.0 - Production on 24-NOV-2026 20:21:43
+LSNRCTL for Linux: Version 23.26.3.0.0 - Production on 25-NOV-2026 09:23:18
 
 Copyright (c) 1991, 2026, Oracle.  All rights reserved.
 
@@ -9,7 +11,7 @@ STATUS of the LISTENER
 Alias                     LISTENER
 Version                   TNSLSNR for Linux: Version 23.26.3.0.0 - Production
 Start Date                24-NOV-2026 18:31:43
-Uptime                    0 days 1 hr. 49 min. 59 sec
+Uptime                    0 days 14 hr. 51 min. 34 sec
 Trace Level               off
 Security                  ON: Local OS Authentication
 SNMP                      OFF
@@ -25,6 +27,8 @@ Service "55e54f210f100828e0630b00580adfd0" has 1 instance(s).
 Service "FREE" has 1 instance(s).
   Instance "FREE", status READY, has 1 handler(s) for this service...
 Service "FREEXDB" has 1 instance(s).
+  Instance "FREE", status READY, has 1 handler(s) for this service...
+Service "academia_app" has 1 instance(s).
   Instance "FREE", status READY, has 1 handler(s) for this service...
 Service "freepdb1" has 1 instance(s).
   Instance "FREE", status READY, has 1 handler(s) for this service...

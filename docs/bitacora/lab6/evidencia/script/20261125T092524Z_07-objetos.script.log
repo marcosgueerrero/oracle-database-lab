@@ -1,3 +1,5 @@
+== EVIDENCIA alumno=E030 hora=2026-11-25T09:25:24Z origen=07-objetos
+== EVIDENCIA contenedor=a01c5e2cc214 dbid=1509902213 arranque=2026-11-24T19:06:49 scn=7587360
 
 Session altered.
 
@@ -85,8 +87,8 @@ IX_EST_LAB6_ESTADO VALID
 
 ORIGINAL_NAME	   OBJECT_NAME_BIN		    TYPE	      MB
 ------------------ -------------------------------- --------- ----------
-IX_EST_LAB6_ESTADO BIN$YQxc46xZH/rgYwIAEaz/Cw==$0   INDEX	      .5
-ACA_EST_LAB6	   BIN$YQxc46xaH/rgYwIAEaz/Cw==$0   TABLE	       2
+IX_EST_LAB6_ESTADO BIN$YRdoJmioQEXgYwIAEayRHA==$0   INDEX	      .5
+ACA_EST_LAB6	   BIN$YRdoJmipQEXgYwIAEayRHA==$0   TABLE	       2
 
 EN_PAPELERA
 -----------
