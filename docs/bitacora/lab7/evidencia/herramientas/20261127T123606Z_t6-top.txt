@@ -1,0 +1,4 @@
+== EVIDENCIA alumno=E030 hora=2026-11-27T12:36:06Z origen=t6/top
+== EVIDENCIA contenedor=a01c5e2cc214 dbid=1509902213 arranque=2026-11-26T17:19:01 scn=7647170
+== Top 20 sentencias por elapsed (filtro: t6_cp) ==
+-- Siguiente paso: «t6 plan SQL_ID» para ver el plan real de la que más pesa.

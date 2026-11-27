@@ -1,0 +1,7 @@
+== EVIDENCIA alumno=E030 hora=2026-11-27T12:33:42Z origen=t6/INC-606_verificar
+== EVIDENCIA contenedor=a01c5e2cc214 dbid=1509902213 arranque=2026-11-26T17:19:01 scn=7647055
+== INC-606 · verificar · alumno E030 · semilla 30
+OK    Incidente INC-606 roto para E030 (semilla 30) el 2026-11-27 12:31 · modo de rotura UNUSABLE
+OK    IX_T6_PED_CP: VALID y VISIBLE
+OK    La V2 de la aplicación vuelve a usar IX_T6_PED_CP
+OK    Lecturas por búsqueda: 133

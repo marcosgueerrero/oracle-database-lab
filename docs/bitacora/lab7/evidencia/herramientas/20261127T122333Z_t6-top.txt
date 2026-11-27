@@ -1,0 +1,37 @@
+== EVIDENCIA alumno=E030 hora=2026-11-27T12:23:33Z origen=t6/top
+== EVIDENCIA contenedor=a01c5e2cc214 dbid=1509902213 arranque=2026-11-26T17:19:01 scn=7645573
+== Top 30 sentencias por gets (filtro: -) ==
+
+SQL_ID         PLAN_HASH       EJEC SEG_TOTAL    MS_EJEC  GETS_EJEC FILAS_EJEC TEXTO
+------------- ---------- ---------- --------- ---------- ---------- ---------- ------------------------------------------
+0w26sk6t6gq98 1388734953          6       2.1      358.1      31513          1 SELECT XMLTYPE(DBMS_REPORT.GET_REPORT_WITH
+8f91gw4xw0tkz 2485422818          6       2.0      337.8      30081          1 WITH MONITOR_DATA AS ( SELECT * FROM TABLE
+8hn59jfgw00y7 1767728868         40       0.6       14.5       2709          1 SELECT /* t6_c18_pendientes */ COUNT(*), S
+0c193fvpfa1hu          0          1       1.4     1358.7      74583          1 INSERT INTO t6.c18_snap VALUES ('LUNES_INI
+0sbbcuruzd66f 2239883476      20532       0.4        0.0          3          1 select /*+ rule */ bucket_cnt, row_cnt, ca
+dyr6gyzhb6qh4 2510392723         20       0.2        8.6       2686          1 /* SQL Analyze(217,0) */ SELECT /* t6_c18_
+04kug40zbu4dm 4006480256       2863       0.2        0.1         15          0 select policy#, action# from aud_object_op
+2sxqgx5hx76qr 3312420081       8304       1.2        0.1          3         16 select /*+ rule */ bucket, endpoint, col#,
+53saa2zkr6wc3 3038981986       5220       0.1        0.0          5          1 select intcol#,nvl(pos#,0),col#,nvl(spare1
+bxu1s25bf60rv          0          2       0.4      197.3       9784          1 begin prvt_hdm.execute_manual_actions( :db
+4694415qkkqy7          0          1       0.4      394.1      19114          1 INSERT INTO t6.c18_snap VALUES ('LUNES_FIN
+0gwaa0289rasu  299250003       2181       0.1        0.0          6          2 select /*+ rule */ pos#,intcol#,col#,spare
+b39m8n96gxk7c          0          3       0.7      233.6       4170          0 call dbms_autotask_prvt.run_autotask ( :0,
+855yvjgw89nfy 3652932668          2       0.0       14.5       5866       3000 insert into WRH$_SYSSTAT (dbid, per_pdb, c
+ampw9ddqufjd3          0          1       0.7      673.8      11707          1 begin /*KAPI:capture*/ dbms_auto_index_int
+9tgj4g8y4rwy8 3755742892       3433       0.1        0.0          3          1 select type#,blocks,extents,minexts,maxext
+87gaftwrm2h68 1072382624       3349       0.1        0.0          3          1 select o.owner#,o.name,o.namespace,o.remot
+gx4mv66pvj3xz 2570921597       1045       0.1        0.1          8          5 select con#,type#,condlength,intcols,robj#
+0yn07bvqs30qj  866645418       2592       0.1        0.0          3          1 select pctfree_stg, pctused_stg, size_stg,
+acmvv4fhdc9zh  813480514       2022       0.1        0.0          4          1 select obj#,type#,ctime,mtime,stime, statu
+2a5bjk27jynyk 3210509788          3       0.0       15.3       2799          1 insert /* KSXM:TAKE_SNPSHOT */ into sys.op
+f1j77qt74dkkn 2666663749          1       0.1       61.5       8355     180000 INSERT INTO t6.cesta SELECT id_pedido, id_
+gg4269s70kbra 3526770254       1497       0.1        0.1          5          1 select /*+ rule */ t.ts#,t.file#,t.block#,
+7uyfat8w4q85d  758773630          1       0.2      172.1       7480          1 SELECT value(awr_tab) FROM TABLE(dbms_sqlt
+5rwj77bq2hzkp 1388734953          1       0.2      166.8       6901          1 SELECT DBMS_SPM.REPORT_EVOLVE_TASK(:tarea,
+3un99a0zwp4vd 1475428744        455       0.1        0.2         14          6 select owner#,name,namespace,remoteowner,l
+f3ww8rgva3hrs  477378112       1724       0.1        0.0          3          1 update /* KSXM:FLUSH COL */ sys.col_usage$
+8swypbbr0m372  570326988        455       0.0        0.0         13          5 select order#,columns,types from access$ w
+1zb651a37ccgg 3102754926          2       0.0        9.9       2889       1534 insert into wrh$_latch (dbid, per_pdb, con
+asp0p496wn0hk 4177538615       1377       0.1        0.1          4          1 select count(*) from annotations_usage$ wh
+-- Siguiente paso: «t6 plan SQL_ID» para ver el plan real de la que más pesa.

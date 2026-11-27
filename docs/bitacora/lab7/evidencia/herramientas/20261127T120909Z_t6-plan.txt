@@ -1,0 +1,3 @@
+== EVIDENCIA alumno=E030 hora=2026-11-27T12:09:09Z origen=t6/plan
+== EVIDENCIA contenedor=a01c5e2cc214 dbid=1509902213 arranque=2026-11-26T17:19:01 scn=7645140
+Uso: t6 plan SQL_ID [hijo]   (el SQL_ID sale de: t6 top, t6 salud o la fase diagnosticar)
