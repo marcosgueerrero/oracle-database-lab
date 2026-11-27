@@ -1,0 +1,16 @@
+== EVIDENCIA alumno=E030 hora=2026-11-27T11:41:12Z origen=t6/C01_entender
+== EVIDENCIA contenedor=a01c5e2cc214 dbid=1509902213 arranque=2026-11-26T17:19:01 scn=7626665
+
+SYS@FREE> ALTER SESSION SET CONTAINER = FREEPDB1;
+
+Session altered.
+
+SYS@FREE> SET ECHO OFF
+== El SLI de la web, por tanda ==
+  FROM t6.c01_tanda t JOIN t6.app_log l ON l.etq = t.etq
+          *
+ERROR at line 5:
+ORA-00942: table or view "T6"."C01_TANDA" does not exist
+Help: https://docs.oracle.com/error-help/db/ora-00942/
+
+-- Lectura: con 8 veces más sesiones, ¿se atienden 8 veces más llamadas por segundo? ¿Qué le pasa a la latencia?
