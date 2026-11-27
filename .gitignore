@@ -4,3 +4,8 @@ backups/
 *.dmp
 .DS_Store
 Thumbs.db
+scripts/t6/salidas/
+
+# Evidencias técnicas: registros de ejecución y configuración de Oracle
+docs/bitacora/**/evidencia/**/*.log
+docs/bitacora/**/evidencia/**/*.ora
