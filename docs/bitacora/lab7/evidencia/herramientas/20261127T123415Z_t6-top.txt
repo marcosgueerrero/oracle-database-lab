@@ -1,0 +1,17 @@
+== EVIDENCIA alumno=E030 hora=2026-11-27T12:34:15Z origen=t6/top
+== EVIDENCIA contenedor=a01c5e2cc214 dbid=1509902213 arranque=2026-11-26T17:19:01 scn=7647094
+== Top 10 sentencias por gets (filtro: -) ==
+
+SQL_ID         PLAN_HASH       EJEC SEG_TOTAL    MS_EJEC  GETS_EJEC FILAS_EJEC TEXTO
+------------- ---------- ---------- --------- ---------- ---------- ---------- ------------------------------------------
+0sbbcuruzd66f 2239883476      22568       0.4        0.0          3          1 select /*+ rule */ bucket_cnt, row_cnt, ca
+53saa2zkr6wc3 4252969457        509       0.1        0.1         38          1 select intcol#,nvl(pos#,0),col#,nvl(spare1
+0gwaa0289rasu  299250003       2512       0.1        0.0          6          2 select /*+ rule */ pos#,intcol#,col#,spare
+89dnvny92hurh 3092396914          1       0.1       70.8      10986          1 SELECT COUNT(*) FROM DBA_TABLES WHERE OWNE
+00t1jxa7jzjh8          0        319       0.2        0.7         28          1 declare active_pid NUMBER; active_part_rc
+gg4269s70kbra 3526770254       1705       0.1        0.1          5          1 select /*+ rule */ t.ts#,t.file#,t.block#,
+gzus346fntazp 3903051286        319       0.1        0.3         24          1 select nvl(count(1), 0) from commit_scn_lo
+2sxqgx5hx76qr 3312420081       1719       0.0        0.0          3         17 select /*+ rule */ bucket, endpoint, col#,
+acmvv4fhdc9zh  813480514       1240       0.1        0.1          4          1 select obj#,type#,ctime,mtime,stime, statu
+04kug40zbu4dm 4006480256        198       0.0        0.1         21          0 select policy#, action# from aud_object_op
+-- Siguiente paso: «t6 plan SQL_ID» para ver el plan real de la que más pesa.

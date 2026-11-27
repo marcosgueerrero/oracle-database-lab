@@ -1,0 +1,27 @@
+== EVIDENCIA alumno=E030 hora=2026-11-27T12:20:14Z origen=t6/top
+== EVIDENCIA contenedor=a01c5e2cc214 dbid=1509902213 arranque=2026-11-26T17:19:01 scn=7645420
+== Top 20 sentencias por elapsed (filtro: -) ==
+
+SQL_ID         PLAN_HASH       EJEC SEG_TOTAL    MS_EJEC  GETS_EJEC FILAS_EJEC TEXTO
+------------- ---------- ---------- --------- ---------- ---------- ---------- ------------------------------------------
+0w26sk6t6gq98 1388734953          6       2.1      358.1      31513          1 SELECT XMLTYPE(DBMS_REPORT.GET_REPORT_WITH
+8f91gw4xw0tkz 2485422818          6       2.0      337.8      30081          1 WITH MONITOR_DATA AS ( SELECT * FROM TABLE
+0c193fvpfa1hu          0          1       1.4     1358.7      74583          1 INSERT INTO t6.c18_snap VALUES ('LUNES_INI
+2sxqgx5hx76qr 3312420081       8304       1.2        0.1          3         16 select /*+ rule */ bucket, endpoint, col#,
+bq8kvbh0s3q1f 2327803816          1       0.8      835.2       3307          1 select /*+ opt_param('_optimizer_use_auto_
+b39m8n96gxk7c          0          3       0.7      233.6       4170          0 call dbms_autotask_prvt.run_autotask ( :0,
+ampw9ddqufjd3          0          1       0.7      673.8      11707          1 begin /*KAPI:capture*/ dbms_auto_index_int
+8hn59jfgw00y7 1767728868         40       0.6       14.5       2709          1 SELECT /* t6_c18_pendientes */ COUNT(*), S
+1tnktn896mntk 2944671353          6       0.6       92.4          9         79 SELECT /*+ OPT_PARAM('_fix_control' '16391
+bxu1s25bf60rv          0          2       0.4      197.3       9784          1 begin prvt_hdm.execute_manual_actions( :db
+4694415qkkqy7          0          1       0.4      394.1      19114          1 INSERT INTO t6.c18_snap VALUES ('LUNES_FIN
+0sbbcuruzd66f 2239883476      20517       0.4        0.0          3          1 select /*+ rule */ bucket_cnt, row_cnt, ca
+6z6wu9p2r441u 2571571058          1       0.3      319.4       5545          1 /* SQL Analyze(0) */ select /*+ full(t) no
+3au0tkn930vsp 3960417909          1       0.3      251.3       2218          1 select /*+ opt_param('_optimizer_use_auto_
+61znfd8fvgha6 1085729623          1       0.2      232.8       3170          3 SELECT new.sql_seq, old.plan_hash_value, s
+b7wvutrbhf7jg 3877784006          1       0.2      214.4       1794          1 MERGE INTO SYS.SQLOBJ$BV sbv USING (SELECT
+04kug40zbu4dm 4006480256       2857       0.2        0.1         15          0 select policy#, action# from aud_object_op
+62ugxgb29707g 2571571058          1       0.2      208.5       5227          1 /* SQL Analyze(0) */ select /*+ full(t) no
+avzy19hxu6gg4 1869011320          1       0.2      196.0       1590          3 SELECT VALUE(P) FROM TABLE(DBMS_SQLTUNE.SE
+cny348ycn601d 1447872005          1       0.2      188.2        291          4 SELECT CASE WHEN COUNT(*) >= 1 THEN 'OK '
+-- Siguiente paso: «t6 plan SQL_ID» para ver el plan real de la que más pesa.

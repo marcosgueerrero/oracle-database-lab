@@ -1,0 +1,23 @@
+== EVIDENCIA alumno=E030 hora=2026-11-27T11:51:47Z origen=t6/C13_entender
+== EVIDENCIA contenedor=a01c5e2cc214 dbid=1509902213 arranque=2026-11-26T17:19:01 scn=7633429
+
+SYS@FREE> ALTER SESSION SET CONTAINER = FREEPDB1;
+
+Session altered.
+
+SYS@FREE> SET ECHO OFF SERVEROUTPUT OFF
+
+0 rows deleted.
+
+Explained.
+
+FUENTE         FILAS
+--------- ----------
+estimadas     250000
+reales        185277
+
+2 rows selected.
+
+Rollback complete.
+
+-- Lectura: sin histograma, el optimizador reparte las filas por igual entre los 4 estados (1/4 = 250 000).

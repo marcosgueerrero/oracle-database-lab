@@ -1,0 +1,45 @@
+== EVIDENCIA alumno=E030 hora=2026-11-26T17:11:57Z origen=t6/salud
+== EVIDENCIA contenedor=a01c5e2cc214 dbid=1509902213 arranque=2026-11-25T10:00:38 scn=7621173
+== 1 · Carga frente a capacidad: AAS por minuto (V$CON_SYSMETRIC_HISTORY) y CPU_COUNT ==
+
+MINUT        AAS
+----- ----------
+17:07          0
+17:08          0
+17:09          0
+17:10        .42
+17:11          0
+
+SEMAFORO
+----------------------------------------------------------------------------------------------------
+VERDE    AAS máximo .4 con CPU_COUNT 2: hay holgura
+== 2 · En qué se va el tiempo (ASH, muestras de 1 s de sesiones activas de esta PDB) ==
+
+WAIT_CLASS     EVENTO                                     MUESTRAS    PCT
+-------------- ---------------------------------------- ---------- ------
+CPU            ON CPU                                           11   45.8
+User I/O       direct path write                                 5   20.8
+User I/O       Data file init write                              3   12.5
+Configuration  log buffer space                                  2    8.3
+User I/O       local write wait                                  1    4.2
+User I/O       db file sequential read                           1    4.2
+== 3 · Quién lo consume: SQL_ID y módulo con más muestras ==
+
+SQL_ID        MODULE           ACTION           MUESTRAS    PCT TEXTO
+------------- ---------------- -------------- ---------- ------ --------------------------------------------
+gv5ak281vfvsa sqlplus@a01c5e2c                         5   22.7
+              c214 (TNS V1-V3)
+
+c1swnp4n3x974 sqlplus@a01c5e2c                         2    9.1
+              c214 (TNS V1-V3)
+
+3g1848kc8ku6r sqlplus@a01c5e2c                         2    9.1
+              c214 (TNS V1-V3)
+
+2cwpmr1krubaq sqlplus@a01c5e2c                         2    9.1
+              c214 (TNS V1-V3)
+
+5x1tm1c4p6xcu sqlplus@a01c5e2c                         2    9.1
+              c214 (TNS V1-V3)
+
+-- Siguiente paso: con el SQL_ID de arriba, «t6 plan SQL_ID» (playbook PB-2). Con esperas de una sola clase, PB-1 rama 2.

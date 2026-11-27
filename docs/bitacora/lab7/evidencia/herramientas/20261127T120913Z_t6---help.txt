@@ -1,0 +1,18 @@
+== EVIDENCIA alumno=E030 hora=2026-11-27T12:09:13Z origen=t6/--help
+== EVIDENCIA contenedor=a01c5e2cc214 dbid=1509902213 arranque=2026-11-26T17:19:01 scn=7645142
+t6.sh · la caja de herramientas de rendimiento del Tema 6 (las que usan los playbooks, los runbooks y los incidentes)
+
+  t6 salud [min]                        ¿más trabajo que CPU? ¿CPU o esperas? ¿quién? (PB-1)            solo lectura
+  t6 top [n] [elapsed|cpu|gets|ejec] [filtro]   sentencias que más pesan (V$SQLSTATS)                   solo lectura
+  t6 plan SQL_ID [hijo]                 plan REAL con E-Rows/A-Rows, predicados y binds (PB-2)          solo lectura
+  t6 ash [min] [sql_id|módulo]          ASH minuto a minuto, por SQL, evento y bloqueos                 solo lectura
+  t6 sesiones [módulo]                  sesiones de usuario activas ahora en FREEPDB1                   solo lectura
+  t6 base registrar ETIQUETA SQL_ID [caso] | t6 base ver [caso]      línea base antes/después (RB-1)
+  t6 estad TABLA [esquema]              estadísticas, obsolescencia, histogramas, pendientes, historial (RB-2)
+  t6 indices TABLA [esquema]            inventario, redundancia, factor de agrupamiento y uso (RB-3)
+  t6 spm lista [filtro] | cargar SQL_ID | evolucionar HANDLE | quitar HANDLE          SQL Plan Management (RB-4)
+  t6 awr snap | lista | top INI FIN | addm INI FIN | informe INI FIN                AWR y ADDM de la PDB (RB-1)
+  t6 traza on MÓDULO [ACCIÓN] | off MÓDULO [ACCIÓN] | tkprof [identificador]       traza y tkprof (RB-5)
+  t6 memoria                            asesores de SGA y PGA, áreas de trabajo                         solo lectura
+  t6 fra [--liberar]                    ocupación de la FRA; --liberar borra archivelogs de más de 1 hora (aula)
+

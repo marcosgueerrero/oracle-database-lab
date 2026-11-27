@@ -1,0 +1,18 @@
+== EVIDENCIA alumno=E030 hora=2026-11-27T12:48:02Z origen=t6/fra
+== EVIDENCIA contenedor=a01c5e2cc214 dbid=1509902213 arranque=2026-11-26T17:19:01 scn=7648436
+FILE_TYPE		PCT_USADO   ARCHIVOS
+---------------------- ---------- ----------
+ARCHIVED LOG		    96.36	  30
+BACKUP PIECE		     2.26	   5
+ LIMITE_MB   USADO_MB	     PCT
+---------- ---------- ----------
+      4096	 4039	    98.6
+Borrando archivelogs de más de 1 hora (solo en el contenedor del aula: en producción se respaldan antes con RMAN).
+deleted archived log
+deleted archived log
+deleted archived log
+deleted archived log
+Deleted 48 objects
+'FRAUSADA:'||ROUND(100*SPACE_USED/SPACE_LIMIT,1)||'%'
+-----------------------------------------------------
+FRA usada: 2.3 %

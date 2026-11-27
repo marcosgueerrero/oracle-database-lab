@@ -1,0 +1,23 @@
+== EVIDENCIA alumno=E030 hora=2026-11-27T11:52:03Z origen=t6/C14_provocar
+== EVIDENCIA contenedor=a01c5e2cc214 dbid=1509902213 arranque=2026-11-26T17:19:01 scn=7634421
+
+SYS@FREE> ALTER SESSION SET CONTAINER = FREEPDB1;
+
+Session altered.
+
+SYS@FREE> SET ECHO OFF SERVEROUTPUT OFF
+
+PL/SQL procedure successfully completed.
+
+System altered.
+
+== El call center abre el panel 30 veces ==
+
+PL/SQL procedure successfully completed.
+
+RESULTADO
+--------------------------------------------------------------------------------------------------------------
+Panel abierto 30 veces: 16.8 ms y 5305 lecturas lógicas por apertura
+
+1 row selected.
+
