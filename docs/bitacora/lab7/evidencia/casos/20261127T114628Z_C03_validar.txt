@@ -1,0 +1,14 @@
+== EVIDENCIA alumno=E030 hora=2026-11-27T11:46:28Z origen=t6/C03_validar
+== EVIDENCIA contenedor=a01c5e2cc214 dbid=1509902213 arranque=2026-11-26T17:19:01 scn=7630524
+
+SYS@FREE> ALTER SESSION SET CONTAINER = FREEPDB1;
+
+Session altered.
+
+SYS@FREE> SET ECHO OFF FEEDBACK OFF
+
+RESULTADO
+--------------------------------------------------------------------------------------------------------------
+OK    Hard parses: 28 con variables de enlace frente a 5033 con literales
+OK    Tiempo total: 140 ms frente a 3250 ms
+OK    Cursores en la shared pool: 1 con variables, 5000 con literales (y los que ya expulsó)
